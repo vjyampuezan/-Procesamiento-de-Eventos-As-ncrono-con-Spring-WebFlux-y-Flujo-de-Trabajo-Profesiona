@@ -1,4 +1,4 @@
-package com.edteam.reservations.model; // PAQUETE SEGÚN TU ESTRUCTURA
+package com.edteam.reservations.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,13 +14,18 @@ public final class ReservationEvent {
         this.id = id;
         this.passengerName = passengerName;
         this.price = price;
+        // COPIA DEFENSIVA EN CONSTRUCTOR
         this.emails = (emails != null) ? new ArrayList<>(emails) : new ArrayList<>();
     }
 
     public String getId() { return id; }
     public String getPassengerName() { return passengerName; }
     public Double getPrice() { return price; }
-    public List<String> getEmails() { return Collections.unmodifiableList(emails); }
+
+    public List<String> getEmails() {
+        // COPIA DEFENSIVA EN GETTER
+        return Collections.unmodifiableList(emails);
+    }
 
     @Override
     public String toString() {
